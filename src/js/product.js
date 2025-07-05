@@ -6,7 +6,7 @@ const dataSource = new ProductData("tents");
 function addProductToCart(product) {
   let cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
   if (!Array.isArray(cartItems) && cartItems !== null) {
-    cartItems = [cartItems]
+    cartItems = [cartItems];
   }
   cartItems.push(product);
   setLocalStorage("so-cart", cartItems);
