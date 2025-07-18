@@ -6,6 +6,7 @@ export default class Product {
 }
     async init() {
       this.product = await this.dataSource.findProductById(this.productId);
+      this.product.quantity = 1; // Default quantity
     
 
     if (this.product) {
@@ -19,7 +20,13 @@ export default class Product {
     if (!Array.isArray(cartItems) && cartItems !== null) {
       cartItems = [cartItems];
     }
-    cartItems.push(this.product);
+    const existingProduct = cartItems.find(item => item.Id === this.product.Id);
+
+    if (existingProduct) {  
+      existingProduct.quantity += 1; // Increment quantity if product already in cart
+    } else {
+      cartItems.push(this.product); // Add new product to cart
+    }
     localStorage.setItem("so-cart", JSON.stringify(cartItems));
   }
 
