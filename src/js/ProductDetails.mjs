@@ -3,6 +3,7 @@ export default class Product {
   this.productId = productId;
   this.product = {};
   this.dataSource = dataSource;
+  this.product.quantity = 1;
 }
     async init() {
       this.product = await this.dataSource.findProductById(this.productId);
@@ -16,6 +17,7 @@ export default class Product {
     }
   }
   addProductToCart() {
+    console.log("Adding product to cart:", this.product);
     let cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
     if (!Array.isArray(cartItems) && cartItems !== null) {
       cartItems = [cartItems];
