@@ -4,6 +4,22 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  const cartTotalContainer = document.querySelector(".cart-total");
+  if (cartItems.length > 0) {
+    const totalAmount = cartItems.reduce(
+      (total, item) => total + item.FinalPrice * item.quantity,
+      0
+    );
+    cartTotalContainer.innerHTML = `
+      <div class="cart-total__summary">
+        <h3>Total: $${totalAmount.toFixed(2)}</h3>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    `;
+    cartTotalContainer.style.display = "block"; // Show the total section
+  } else {
+    cartTotalContainer.style.display = "none"; // Hide if no items
+  }
   addCartButtonListener();
 
 }
