@@ -10,6 +10,7 @@ export default class ProductData {
   constructor(category) {
     this.category = category;
     this.path = `../json/${this.category}.json`;
+    this.amount = 0;
   }
   
   getData() {
