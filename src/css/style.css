@@ -261,3 +261,33 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+.product-categories ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+}
+
+.product-categories li {
+  flex: 0 1 auto;
+}
+
+.product-categories img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.product-categories img:hover {
+  transform: scale(1.05);
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
