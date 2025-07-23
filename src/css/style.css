@@ -353,3 +353,68 @@ button:hover {
   margin-top: 10px;
   text-align: center;
 }
+
+.registration-banner {
+  background-color: rgba(0, 123, 255, 0.8); 
+  color: #fff;
+  padding: 15px 50px 15px 15px;
+  text-align: center;
+  font-size: 1.2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; 
+  animation: fadeDown 0.8s ease forwards;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration-banner .register-btn {
+  background-color: #fff;
+  color: #007bff;
+  border: none;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.registration-banner .register-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.registration-banner .giveaway-msg {
+  margin-left: 15px;
+  font-weight: bold;
+  color: #ffdf00; 
+}
+
+
+.registration-banner .close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.registration-banner .close-btn:hover {
+  color: #ffdf00;
+}
+
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
