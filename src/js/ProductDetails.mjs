@@ -1,12 +1,12 @@
 export default class Product {
-  constructor(productId, dataSource){
-  this.productId = productId;
-  this.product = {};
-  this.dataSource = dataSource;
-}
-    async init() {
-      this.product = await this.dataSource.findProductById(this.productId);
-    
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
+  }
+  async init() {
+    this.product = await this.dataSource.findProductById(this.productId);
+
 
     if (this.product) {
       this.renderProductDetails();
@@ -30,6 +30,16 @@ export default class Product {
       return;
     }
 
+    const product = this.product;
+    let originalPriceHTML = '';
+    let discountBadgeHTML = '';
+
+    if (product.FinalPrice < product.SuggestedRetailPrice) {
+      const discountAmount = (product.SuggestedRetailPrice - product.FinalPrice).toFixed(2);
+      originalPriceHTML = `<p class="product-card__original-price">$${product.SuggestedRetailPrice}</p>`;
+      discountBadgeHTML = `<span class="discount-badge">Save $${discountAmount}</span>`;
+    }
+
     productDetails.innerHTML = `
       <h3>${this.product.Brand.Name}</h3>
 
@@ -42,13 +52,13 @@ export default class Product {
       />
 
       <p class="product-card__price">$${this.product.FinalPrice}</p>
+      ${originalPriceHTML}
+      ${discountBadgeHTML}
 
       <p class="product__color">${this.product.Colors[0].ColorName}</p>
 
-      <p class="product__description">
-        ${this.product.DescriptionHtmlSimple}
+      <p class="product__description">${this.product.DescriptionHtmlSimple}
       </p>
-
       <div class="product-detail__add">
         <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
       </div>

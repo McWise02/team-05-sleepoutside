@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -255,6 +255,22 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+}
+
+.product-card__original-price {
+  text-decoration: line-through;
+  color: grey;
+  font-size: 0.9rem;
+}
+
+.discount-badge {
+  background-color: #e60000;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 0.3rem;
 }
 
 footer {
