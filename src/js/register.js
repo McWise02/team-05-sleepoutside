@@ -21,7 +21,7 @@ signupForm.addEventListener("submit", async (e) => {
   try {
 
     // Send POST request
-    const response = await fetch("http://wdd330-backend.onrender.com/users", {
+    const response = await fetch("https://wdd330-backend.onrender.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
