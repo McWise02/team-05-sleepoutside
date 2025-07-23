@@ -16,10 +16,11 @@ signupForm.addEventListener("submit", async (e) => {
     name: formData.get("name"),
     address: formData.get("address"),
     email: formData.get("email"),
+    password: formData.get("password"),
   };
 
   try {
-
+    console.log("Sending payload:", payload);
     // Send POST request
     const response = await fetch("https://wdd330-backend.onrender.com/users", {
       method: "POST",
