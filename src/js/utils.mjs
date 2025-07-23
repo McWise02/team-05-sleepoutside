@@ -71,3 +71,8 @@ export async function loadHeaderFooter () {
   
 
 }
+
+export function userLoggedIn() {
+  const user = getLocalStorage("user-authorized");
+  return user && user.email && user.password;
+}
