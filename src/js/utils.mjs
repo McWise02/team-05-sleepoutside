@@ -75,4 +75,30 @@ export async function loadHeaderFooter () {
 export function userLoggedIn() {
   const user = getLocalStorage("user-authorized");
   return user && user.email && user.password;
+
+export function calculateTotalWithDiscount(cartItems) {
+  if (!Array.isArray(cartItems)) return 0;
+
+  const total = cartItems.reduce((sum, item) => sum + (item.FinalPrice || 0), 0);
+
+  if (cartItems.length >= 2) {
+    return total * 0.9; // Apply 10% discount
+  }
+
+  return total;
+}
+
+export function addProductToCart(product) {
+  let cartItems = getLocalStorage("so-cart");
+  if (!Array.isArray(cartItems)) {
+    cartItems = [];
+  }
+
+  cartItems.push(product);
+  setLocalStorage("so-cart", cartItems);
+
+  // Calculate total with discount and log it (or display it in UI)
+  const totalWithDiscount = calculateTotalWithDiscount(cartItems);
+  console.log(`Total with discount (if applicable): $${totalWithDiscount.toFixed(2)}`);
+
 }

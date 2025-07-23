@@ -10,4 +10,4 @@ const productID = getParam("product");
 console.log("Product ID from URL:", productID);
 const product = new ProductDetails(productID, dataSource);
 product.init();
-console.log(product)
+console.log(product);

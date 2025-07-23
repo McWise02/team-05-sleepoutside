@@ -1,5 +1,7 @@
+import ProductData from "./ProductData.mjs";
 import { getLocalStorage } from "./utils.mjs";
 import { loadHeaderFooter }  from "./utils.mjs";
+import {addProductToCart} from "./utils.mjs";
 
 loadHeaderFooter();
 function renderCartContents() {
@@ -83,5 +85,19 @@ function addCartButtonListener() {
     });
   }); 
 }
+async function addToCartHandler(e) {
+  const productId = e.target?.dataset?.id;
+  if (!productId) return;
+
+  const product = await ProductData.findProductById(e.target.dataset.id);
+  addProductToCart(product); // ✅ This is necessary
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("addToCart");
+  if (btn) {
+    btn.addEventListener("click", addToCartHandler); // ✅ USING the handler
+  }
+});
 
 renderCartContents();
