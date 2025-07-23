@@ -75,6 +75,7 @@ export async function loadHeaderFooter () {
 export function userLoggedIn() {
   const user = getLocalStorage("user-authorized");
   return user && user.email && user.password;
+}
 
 export function calculateTotalWithDiscount(cartItems) {
   if (!Array.isArray(cartItems)) return 0;

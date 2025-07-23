@@ -13,9 +13,3 @@ loadHeaderFooter();
 
 
 
-
-
-
-
-productList.init();
-
