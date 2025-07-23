@@ -72,6 +72,10 @@ export async function loadHeaderFooter () {
 
 }
 
+export function userLoggedIn() {
+  const user = getLocalStorage("user-authorized");
+  return user && user.email && user.password;
+
 export function calculateTotalWithDiscount(cartItems) {
   if (!Array.isArray(cartItems)) return 0;
 
@@ -96,4 +100,5 @@ export function addProductToCart(product) {
   // Calculate total with discount and log it (or display it in UI)
   const totalWithDiscount = calculateTotalWithDiscount(cartItems);
   console.log(`Total with discount (if applicable): $${totalWithDiscount.toFixed(2)}`);
+
 }

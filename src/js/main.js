@@ -1,13 +1,21 @@
-import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+
+
+
+import { loadHeaderFooter, userLoggedIn }  from "./utils.mjs";
+
+
+if (!userLoggedIn()) {
+  window.location.href = "/login/index.html"; 
+}
+
 
 loadHeaderFooter();
 
-const dataSource = new ProductData("tents");
 
-const element = document.querySelector(".product-list");
 
-const productList = new ProductList("Tents", dataSource, element);
+
+
+
 
 productList.init();
+
