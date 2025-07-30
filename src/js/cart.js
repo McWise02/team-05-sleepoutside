@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import { getLocalStorage } from "./utils.mjs";
 import { loadHeaderFooter }  from "./utils.mjs";
 import {addProductToCart} from "./utils.mjs";
@@ -17,7 +17,9 @@ function renderCartContents() {
     cartTotalContainer.innerHTML = `
       <div class="cart-total__summary">
         <h3>Total: $${totalAmount.toFixed(2)}</h3>
-        <button class="checkout-btn">Checkout</button>
+        <a href="/checkout/index.html">
+          <button class="checkout-btn">Checkout</button>
+        </a>
       </div>
     `;
     cartTotalContainer.style.display = "block"; // Show the total section
@@ -33,7 +35,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
       
     />
@@ -89,7 +91,7 @@ async function addToCartHandler(e) {
   const productId = e.target?.dataset?.id;
   if (!productId) return;
 
-  const product = await ProductData.findProductById(e.target.dataset.id);
+  const product = await ExternalServices.findProductById(e.target.dataset.id);
   addProductToCart(product); // ✅ This is necessary
 }
 
