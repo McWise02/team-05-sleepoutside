@@ -1,4 +1,4 @@
-export default class Product {
+export default class ProductDetails {
   constructor(productId, dataSource){
   this.productId = productId;
   this.product = {};
@@ -33,6 +33,8 @@ export default class Product {
   }
 
   renderProductDetails() {
+    console.log(this.product.Image);
+    console.log(this.product);
     const productDetails = document.querySelector(".product-detail");
     if (!productDetails) {
       console.log("Product details container not found in DOM.");
@@ -46,7 +48,7 @@ export default class Product {
 
       <img
         class="divider"
-        src="${this.product.Image}"
+        src="${this.product.Images.PrimaryLarge}"
         alt="${this.product.NameWithoutBrand}"
       />
 
