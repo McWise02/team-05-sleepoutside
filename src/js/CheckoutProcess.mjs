@@ -94,11 +94,13 @@ export default class CheckoutProcess {
     order.items = packageItems(this.list);
     //console.log(order);
 
-    try {
+  try {
       const response = await services.checkout(order);
-      console.log(response);
+      console.log("Checkout successful:", response);
     } catch (err) {
-      console.log(err);
+      const errorName = err.name || "UnknownError";
+      const errorMessage = err.message || "An unknown error occurred during checkout.";
+      console.error(`Checkout failed [${errorName}]: ${errorMessage}`);
     }
   }
 }
