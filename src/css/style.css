@@ -485,3 +485,13 @@ button:hover {
   font-size: 1rem;
   color: #333;
 }
+
+
+.modal[hidden] { display: none; }
+.modal { position: fixed; inset: 0; z-index: 1000; }
+.modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.45); }
+.modal__dialog { position: relative; margin: 6vh auto; max-width: 720px; background: #fff; border-radius: 12px; padding: 1rem; z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+.modal__close { position: absolute; top: .5rem; right: .5rem; font-size: 1.5rem; background: transparent; border: 0; cursor: pointer; }
+.modal__content img { width: 100%; height: auto; border-radius: 8px; }
+.modal__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 700px){ .modal__grid { grid-template-columns: 1fr; } }
