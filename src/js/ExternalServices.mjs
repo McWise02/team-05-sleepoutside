@@ -8,13 +8,7 @@ async function convertToJson(res) {
     throw { name: "servicesError", message: JSON.stringify(jsonResponse) }; // custom error with stringified message
   }
 }
-// function convertToJson(res) {
-//   if (res.ok) {
-//     return res.json();
-//   } else {
-//     throw new Error("Bad Response");
-//   }
-// }
+
 
 export default class ExternalServices {
   constructor() {

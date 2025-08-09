@@ -86,13 +86,13 @@ export default class CheckoutProcess {
   async checkout() {
     const formElement = document.forms["checkout"];
     const order = formDataToJSON(formElement);
-
+    console.log("Order before submission:", order);
     order.orderDate = new Date().toISOString();
     order.orderTotal = this.orderTotal;
     order.tax = this.tax;
     order.shipping = this.shipping;
     order.items = packageItems(this.list);
-    //console.log(order);
+    console.log("Order to be submitted:", order);
 
   try {
       const response = await services.checkout(order);
