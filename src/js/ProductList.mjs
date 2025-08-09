@@ -4,7 +4,7 @@ function productCardTemplate(product) {
   return `
     <li class="product-card">
       <a href="/product_pages/?product=${product.Id}">
-        <img src="${product.Images}" alt="${product.Name}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
         <h2>${product.Brand.Name}</h2>
         <h3>${product.Name}</h3>
         <p class="product-card__price">$${product.FinalPrice}</p>
@@ -27,6 +27,7 @@ export default class ProductList {
 
   async init() {
     const list = await this.dataSource.getData(this.category);
+    console.log(list)
     this.products = list;
     this.renderList(list);
     document.querySelector(".title").textContent = 
@@ -58,11 +59,10 @@ export default class ProductList {
     const modal = document.getElementById("quickview-modal");
     const content = modal.querySelector(".modal__content");
 
-    // Feel free to tailor the fields—these are common ones from your card data
     content.innerHTML = `
       <div class="modal__grid">
         <div>
-          <img src="${product.Images}" alt="${product.Name}">
+          <img src="${product.Images.PrimarySmall}" alt="${product.Name}"  height="50">
         </div>
         <div>
           <h2 id="qv-title" class="qv-title">${product.Name}</h2>
@@ -80,25 +80,13 @@ export default class ProductList {
   }
 
   showModal(modal) {
-    // basic a11y + close handlers
-    modal.hidden = false;
-    modal.setAttribute("aria-hidden", "false");
+  modal.hidden = false;
+  modal.setAttribute("aria-hidden", "false");
 
-    const toFocus = modal.querySelector(".modal__close");
-    const cleanup = () => {
-      modal.hidden = true;
-      modal.setAttribute("aria-hidden", "true");
-      document.removeEventListener("keydown", onKey);
-      modal.removeEventListener("click", onBackdropClick);
-    };
-    const onKey = (e) => { if (e.key === "Escape") cleanup(); };
-    const onBackdropClick = (e) => {
-      if (e.target.matches("[data-close]")) cleanup();
-    };
-
-    document.addEventListener("keydown", onKey);
-    modal.addEventListener("click", onBackdropClick);
-    toFocus?.focus();
-  }
-
+  // Only X button closes modal
+  modal.querySelector("[data-close]").onclick = () => {
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+  };
+}
 }
